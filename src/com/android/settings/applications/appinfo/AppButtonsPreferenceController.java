@@ -291,6 +291,9 @@ public class AppButtonsPreferenceController extends BasePreferenceController imp
                      SettingsEnums.ACTION_APP_INFO_FORCE_STOP,
                      getPackageNameForMetric());
             // force stop
+            if(mPackageName.equals("org.sos.device")){
+                return;
+            }
             if (mPm.isPackageStateProtected(mAppEntry.info.packageName, mUserId)) {
                 RestrictedLockUtils.sendShowAdminSupportDetailsIntent(mActivity,
                         RestrictedLockUtilsInternal.getDeviceOwner(mActivity));
