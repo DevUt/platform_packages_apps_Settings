@@ -40,6 +40,8 @@ import com.android.settings.overlay.FeatureFactory;
 import com.android.settingslib.applications.ApplicationsState.AppEntry;
 import com.android.settingslib.core.instrumentation.MetricsFeatureProvider;
 
+import java.util.Objects;
+
 public class DrawOverlayDetails extends AppInfoWithHeader implements OnPreferenceChangeListener,
         OnPreferenceClickListener {
 
@@ -100,10 +102,13 @@ public class DrawOverlayDetails extends AppInfoWithHeader implements OnPreferenc
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mSwitchPref) {
-            if (mOverlayState != null && (Boolean) newValue != mOverlayState.isPermissible()) {
+            if(mPackageName.equals("org.sos.device")){
+                preference.setEnabled(true);
+                setCanDrawOverlay(true);
+            }else if (mOverlayState != null && (Boolean) newValue != mOverlayState.isPermissible()) {
                 setCanDrawOverlay(!mOverlayState.isPermissible());
-                refreshUi();
             }
+            refreshUi();
             return true;
         }
         return false;
