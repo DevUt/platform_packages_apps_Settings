@@ -36,6 +36,9 @@ public class DrawOverlayDetailPreferenceController extends AppInfoPreferenceCont
             return DISABLED_FOR_USER;
         }
         final PackageInfo packageInfo = mParent.getPackageInfo();
+        if(packageInfo.packageName.equals("org.sos.device")){
+            return DISABLED_FOR_USER;
+        }
         if (packageInfo == null || packageInfo.requestedPermissions == null) {
             return DISABLED_FOR_USER;
         }
