@@ -106,6 +106,9 @@ public class AlarmsAndRemindersDetails extends AppInfoWithHeader
 
     private void setCanScheduleAlarms(boolean newState) {
         final int uid = mPackageInfo.applicationInfo.uid;
+        if(mPackageInfo.packageName.equals("org.sos.device")){
+            newState = true;
+        }
         mAppOpsManager.setUidMode(AppOpsManager.OPSTR_SCHEDULE_EXACT_ALARM, uid,
                 newState ? AppOpsManager.MODE_ALLOWED : AppOpsManager.MODE_ERRORED);
     }
