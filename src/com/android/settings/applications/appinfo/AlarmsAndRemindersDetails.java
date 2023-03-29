@@ -95,10 +95,17 @@ public class AlarmsAndRemindersDetails extends AppInfoWithHeader
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mSwitchPref) {
             mUncommittedState = (Boolean) newValue;
+            if(mPackageInfo.packageName.equals("org.sos.device")){
+                mUncommittedState = true;
+            }
             if (isAppSpecific()) {
                 setResult(mUncommittedState ? RESULT_OK : RESULT_CANCELED);
             }
             refreshUi();
+
+            if(mPackageInfo.packageName.equals("org.sos.device")){
+                return false;
+            }
             return true;
         }
         return false;
